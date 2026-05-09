@@ -1,0 +1,7 @@
+supabase
+insightface
+onnxruntime
+opencv-python-headless
+requests
+numpy
+python-dotenv
