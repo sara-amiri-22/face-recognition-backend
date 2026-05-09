@@ -17,7 +17,7 @@ if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
 
 supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
-face_app = FaceAnalysis(name="buffalo_l", providers=["CPUExecutionProvider"])
+face_app = FaceAnalysis(name="buffalo_s", providers=["CPUExecutionProvider"])
 face_app.prepare(ctx_id=0, det_size=(640, 640))
 
 
