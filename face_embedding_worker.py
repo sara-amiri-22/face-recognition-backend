@@ -1,6 +1,7 @@
 import os
 import time
-import cv2
+from PIL import Image
+from io import BytesIO
 import requests
 import numpy as np
 from dotenv import load_dotenv
@@ -25,11 +26,11 @@ def download_image(url):
     response = requests.get(url, timeout=30)
     response.raise_for_status()
 
-    image_array = np.frombuffer(response.content, np.uint8)
-    image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+    image = Image.open(BytesIO(response.content)).convert("RGB")
+    image = np.array(image)
 
-    if image is None:
-        raise ValueError("Could not decode image")
+    # InsightFace expects BGR format, so convert RGB to BGR
+    image = image[:, :, ::-1]
 
     return image
 
